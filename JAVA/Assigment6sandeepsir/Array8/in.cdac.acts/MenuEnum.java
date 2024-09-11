@@ -1,0 +1,3 @@
+enum MenuEnum{
+	EXIT,ACCEPT_RECORD,PRINT_RECORD
+}
