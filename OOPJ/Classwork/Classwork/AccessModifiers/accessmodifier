@@ -1,0 +1,8 @@
+access modilfire visibility
+				
+				same pck				diff pck
+				same  sub	non sub		sub non sub
+private			Y	  N		N			N	N
+package private Y	  Y     Y			N   N
+procted         Y	  Y	    Y			Y	N
+public 			Y     Y     Y           Y   Y
