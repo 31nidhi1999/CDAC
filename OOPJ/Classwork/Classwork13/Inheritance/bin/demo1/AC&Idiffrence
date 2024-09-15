@@ -1,0 +1,14 @@
+AC
+
+1)AC have contrcutor but we us to call AC constrcutor via underlying sub class instance(sole constr)
+2)AC may or may not contain abstarct methods
+3)super type of AC may be constrte class /AC
+4)at a time abstarct method can extend from one class
+5)partially abstraction
+
+I
+1)Interface don't have any contructor
+2)by default the methods in I are abstarct method
+3)Ony interface is super
+4)Interface canextends from multiple Interface
+5)fully abstarcation
