@@ -1,6 +1,6 @@
 /**
  * sole constructor
- * as we know when the class is abstract we can create the instance for those classes.
+ * as we know when the class is abstract we can't create the instance for those classes.
  * to call those abstract constructor we call through sub class constructor
  * */
 
