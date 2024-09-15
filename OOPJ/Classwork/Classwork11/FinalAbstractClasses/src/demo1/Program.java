@@ -7,6 +7,7 @@
  * We can't create the instance of abstract class.
  * A a = new A(); not allowed
  * But in abstract class ref we can initiazlize sub class instance
+ abstarct class have contrsuctore but we need to call the custorture via underlying subclass(sole constructore)
  * 
  * 
  * final is a concreate class we can create instance of final class
