@@ -13,6 +13,9 @@ n
  * The .class file name generated for below inner class is Outter$Inner.class
  * 
  * To handel static nested  & inner class handel them a as static & non static method
+ *  
+ *To acess the NS filed pf top cls inside te nested class we don't required to create the instance of top level class
+* but to access the NS feild of nested cls in top level class we need to create instance of nested cls
  * */
 
 package demo1;
