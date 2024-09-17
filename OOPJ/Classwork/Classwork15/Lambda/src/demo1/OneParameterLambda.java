@@ -13,9 +13,9 @@ public class OneParameterLambda {
 	
 	public static void main(String[] args) {
 		/**
-		 * way3 only valid for single paramter , no writing parameter inside ()
+		 * way3 only valid for single paramter , no writing parameter  ()
 		 * */
-		Printablle1 p = (str)->System.out.println("Hi "+str +" Printing from lambda expression");
+		Printablle1 p = str->System.out.println("Hi "+str +" Printing from lambda expression");
 		p.print("Sunita");
 	}
 	
