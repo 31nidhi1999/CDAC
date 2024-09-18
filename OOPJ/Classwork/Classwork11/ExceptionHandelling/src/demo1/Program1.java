@@ -1,4 +1,9 @@
 /**
+*Exception is an issue / unexpected event / instance which occurs during execution of
+*application.
+*Exception is an instance which is used to acknowledge user of the system if any exeption
+*situation occurs in the code.
+If we want to manages OS resources carefully then we should use exception handling in Java.
  * we habe 2 type of exception in java
  * 1)Checked -  related with resource handeling & complier alway make it mandatory to try,
  * catch the checked exception
