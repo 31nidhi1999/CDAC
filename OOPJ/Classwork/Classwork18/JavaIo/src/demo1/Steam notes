@@ -1,0 +1,10 @@
+Streams facilitate transporting data from one place to another. Different streams are needed 
+to send or receive data through different sources such as keyboard, monitor, files etc
+
+
+
+Stream class consist 
+1)Ip op stream (to transfer byte stream) used when audit, video
+2)Reader writer stream (to transfer char stream) used when working with character or string
+
+
