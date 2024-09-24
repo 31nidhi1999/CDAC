@@ -1,1 +1,79 @@
+What is a computational thinkin?
+
+it is a problem solving process that includes
+
+1)decomposition :: breaking down data & process into smaller task
+2)packet recognition :: observing trends and regularities of dat
+3)abstraction :: identify generic principles that generate this pattern
+4)algorithm  :: developing step by step intro to solving similar problems
+
+What are the basic techniques of logic building ?
+1)flowchart 
+2)designing algorithm 
+3)Pseudo Code
+
+
+What is alcoholism algorithm ?
+is awell defined step by step computational procedure that takes a set of input and produce a desire output
+
+charateristic  of an algorithm?
+1)finite  :: it must terminate or end after finite number of step 
+2)defined  :: each step must be preciously defined 
+3)input  :: it take zero or more inputs 
+4)characteristic :: produce at least one output
+5)effective each setup must be basic and achievable
+
+Types of statistics??
+1)greedy technique :: makes the local optimise code at each step with the hope of finding a global optimization eg dijkter algo
+2)divide and conquer :: problem into smaller sub problem solve them recursively and combine the result example merge sort or quick sort 
+3)dynamic programming :: solves complex problem by breaking them into simple sub problems and solving fibonacci series 
+4)brute force :: tried all possible solutions until the correct one is found string matching 
+5)recursive :: solve a problem by storing smaller instance of the same programme example factorial 
+6)search algorithm :: find an element in given data structure of example binary search 
+7)sorting algorithm:: sorting the element in a particular sequence bubble sort or insertion sort
+
+
+Big o notational best case Ω,   average case θ and worst case O
+
+What is data structure??
+*it is a way of organising managing or storing data to enable efficient access and modification 
+*a data structure is a particular way of organising managing and storing data in the computer data that it can be used effectively it defines relationship between 
+data operations and that can be performed on their data and method of accessing our modifying data structures are crucial for developing efficient algorithm and are foundational for handling and process data in various application
+
+
+What are the different types of data structures??
+linear data structure ::  means data elements are arranged sequentially for example array linked list tag
+
+
+non linear data structure ::  data element are arranged hierarchical or in network 
+for hierarchical example each tree and 
+for network the example is graph 
+
+
+Operations perform on data structure ??
+traversing :: accessing the alignment 
+searching finding element at particular location 
+insertion adding new element to the existing data structure
+deletion removing element from the existing data structure 
+sorting arranging element in a particular order 
+merging combining combining 2 data structure into the 1 data structure
+
+
+
+What is static data structure??
+a static data structure is a fixed size structure that allocate a pre defined amount of memory at compile time 
+characteristic of static data structures are fixed type memory allocation at the compile time access pair and efficiency for example array is 
+an example of static data structure array is an example of static data structure
+
+
+What is dynamic data structure??
+a dynamic data structure can grow or shrink in size during programme execution that is runtime 
+it allocate memory has needed according to runtime 
+characteristics are variable size memorial allocation is done at runtime flexibility overloaded example of is a linked list
+
+What is recursion  method solves problem by calling a copy of itself to work on a smaller problem it is also important to ensure that the reculsion must terminate each time the function call itself with a slightly simple version of original problem 
+
+types of recursion direct recursion a function is called 
+direct recursive if it calls the same function in direct precursive a function is called
+indirect recursive if it calls another function say F1 and F2 directly or indirectly
 
