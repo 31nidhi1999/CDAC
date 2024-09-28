@@ -21,3 +21,9 @@ class ReverseArrayInPlace{
 		System.out.print("]");
 	}
 }
+
+/**
+
+TC O(n)
+Sc o(n)
+*/
