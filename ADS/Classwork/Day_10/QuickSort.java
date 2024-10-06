@@ -1,57 +1,54 @@
- class QuickSort{
-	 
-	public static int partition(int[] arr, int low,int high){
-		int pivort = arr[low];
-		int  i = low  + 1;
-		int  j = high;
-		
-		while(i<j){
-			while(arr[i]<=pivort && i<high-1){
+package QuickSort;
+
+public class QuickSort {
+
+	public static int partition(int arr[], int low, int high) {
+		int pivot = arr[low];
+		int i = low + 1;
+		int j = high;
+		int temp;
+		while (i <= j) {
+
+			while (i <= high && arr[i] <= pivot) {
 				i++;
 			}
-			
-			while(arr[j]>pivort && j>=low){
+
+			while (j >= low && arr[j] > pivot) {
 				j--;
 			}
-			if(i<j){
-				swap(arr,i,j);
+
+			if (i < j) {
+				temp = arr[i]; // i and j not crossed then swap the elements
+				arr[i] = arr[j];
+				arr[j] = temp;
 			}
 		}
-		
-		
-		
-		swap(arr,low,j);
-	     return j;
-		
+		temp = arr[low]; // swap the pivot element with j
+		arr[low] = arr[j];
+		arr[j] = temp;
+
+		return j; // return position of pivot
 	}
-	
-	public static void swap(int[] arr,int a, int b){
-		int temp = arr[a];
-		arr[a]=arr[b];
-		arr[b]=temp;
-	}
-	
-	public static void display(int[] arr){
-		for(int k = 0; k<arr.length;k++){
-			System.out.print(arr[k]+" ");
+
+	public static void Quick(int arr[], int low, int high) {
+
+		if (low < high) {
+			int partionIndex = partition(arr, low, high);
+			Quick(arr, low, partionIndex - 1); //Recursively sort left 
+			Quick(arr, partionIndex + 1, high); //Recursively sort  right 
 		}
 	}
-	 
-	public static void quickSort(int[] arr,int low,int high){
-		if(low>=high){
-			return;
+
+	public static void main(String[] args) {
+		int[] arr = { 64, 25, 12, 22, 11 };
+		int n = arr.length;
+		Quick(arr, 0, n - 1);
+
+		System.out.println("Sorted array");
+
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
 		}
-		
-		int pivort = partition(arr,low,high);
-		quickSort(arr,low,pivort-1);
-		quickSort(arr,pivort+1,low);
+		System.out.println();
 	}
-	 
-	public static void main(String [] args){
-		int[] arr = {64, 25, 12, 22, 11};
-		//display(arr);
-		quickSort(arr,0,arr.length-1);
-		display(arr);
-		
-	}
- }
+}
