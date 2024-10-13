@@ -1,0 +1,196 @@
+GROUP BY CLAUSE
+-------------------------------------------
+WHERE clause  ::  use for searching
+ORDER BY clause  ::  use for sorting
+FOR UPDATE clause ::  use for locking
+GROUP BY clause :: use for grouping
+----------------------------------------------------------------------------------------------
+
+
+SELECT deptno, SUM(sal) from emp4
+GROUP BY deptno;
+
+1)Rows(deptno,sal) are retrived from DB server HD to server RAM
+2)Sorting will take place deptno wise
+3)Grouping is done department wise(sal of deptno 1 is isolated in other section of RAM & same with deptno 2)
+4)Group fuction is done department wise
+
++--------+----------+
+| deptno | SUM(sal) |
++--------+----------+
+|      1 |    18000 |
+|      2 |    17000 |
++--------+----------+
+
+2 Rules for GROUP BY
+------------------------------------------------------------------------------------------------
+
+RULE 1 :: Which ever column is present in SELECT clause it has to be present in GROUP BY  clause
+
+	SELECT deptno, SUM(sal) from emp4 GROUP BY deptno;
+	SELECT deptno, MIN(sal) from emp4 GROUP BY deptno;
+	SELECT deptno, MAX(sal) from emp4 GROUP BY deptno;
+	SELECT deptno, AVG(sal) from emp4 GROUP BY deptno;
+
+RULE 2 :: Which ever column is present in GROUP BY clause it may or may not be present in SELECT clause
+
+	SELECT SUM(sal) from emp4 GROUP BY deptno;
+
+2D query
+------------------------------------------------------
+When the GROUP BY clause is know as 2D query because we canplot a Graph from the output 
+
+SELECT deptno, SUM(sal) from emp4 WHERE job='M' GROUP BY deptno;
++--------+----------+
+| deptno | SUM(sal) |
++--------+----------+
+|      1 |     8000 |
+|      2 |     9000 |
++--------+----------+
+
+SELECT deptno,job, SUM(sal) from emp4  GROUP BY deptno,job;
++--------+------+----------+
+| deptno | job  | SUM(sal) |
++--------+------+----------+
+|      1 | M    |     8000 |
+|      1 | C    |    10000 |
+|      2 | M    |     9000 |
+|      2 | C    |     8000 |
++--------+------+----------+
+
+if you have large number of rows in a table & if you have large number of column in your GROUP BY clause then the SELECT staement will be very slow beacsue that much sorting has to take place in Server RAM
+
+If you have 1 column in GROUP BY clause :: 2D
+If you have 2 column in GROUP BY clause ::  3D
+knows as Multi Dimensional query 
+
+SELECT job,deptno, SUM(sal) from emp4  GROUP BY deptno,job;
++------+--------+----------+
+| job  | deptno | SUM(sal) |
++------+--------+----------+
+| M    |      1 |     8000 |
+| C    |      1 |    10000 |
+| M    |      2 |     9000 |
+| C    |      2 |     8000 |
++------+--------+----------+
+
+Where you take job , department wise or department , job wise logically it may sound diffrent but physically it look same but it will make diffrence in speed of processing
+
+Faster
+Outer loop - less number 
+Inner lopp - more number
+
+Slower
+Outer loop - more number 
+Inner lopp - less number
+
+Before programing any query s use COUNT(*) 
+
+The position of column in SELECT clause & the position of column in GROUP BY clause need not be the same
+
+The position of column in SELECT clause will determine the position of column in output , this you will write as per User Requirements
+
+
+The position of column in  in GROUP BY clause will be determine by te speed of sorting 
+
+
+SELECT deptno, SUM(sal) from emp4
+GROUP BY deptno;
+
+
+HAVING CLAUSE
+------------------------------------------------------------------------------------------------
+1)Rows(deptno,sal) are retrived from DB server HD to server RAM
+2)Sorting will take place deptno wise
+3)Grouping is done department wise(sal of deptno 1 is isolated in other section of RAM & same with deptno 2)
+4)Group fuction is done department wise
+5)Having clause
+6)ORDER BY clause
+
+Diffrence between WHERE & HAVING
+
+WHERE clause is use for searching, searching take place in Server HD
+it is use to restrict the rows and to retrived to row from DB Server HD to Server RAM
+
+HAVING clause work after the summation is done
+
+SELECT deptno, SUM(sal) from emp4
+WHERE SAL > 7000
+GROUP BY deptno;
+
+SELECT deptno, SUM(sal) from emp4
+GROUP BY deptno
+HAVING sum(sal) > 7000;
+
+Which ever column is present in SELECT clause it can be used in HAVING clause
+
+SELECT deptno, SUM(sal) from emp4
+GROUP BY deptno
+HAVING deptno = 1;
+
+Its's recommended taht only the group function should be used in HAVING clause
+
+SELECT deptno, SUM(sal) from emp4
+GROUP BY deptno
+ORDER BY sum(sal);
++--------+----------+
+| deptno | SUM(sal) |
++--------+----------+
+|      2 |    17000 |
+|      1 |    18000 |
++--------+----------+
+
+The ORDER By clause is the last clause in SELECT statement
+
+
+MATRIX REPORT
+
+SELECT deptno,COUNT(*), MIN(sal),MAX(sal),SUM(sal), AVG(sal) 
+FROM  emp4
+GROUP BY deptno
+ORDER BY 1;
++--------+----------+----------+----------+----------+----------+
+| deptno | COUNT(*) | MIN(sal) | MAX(sal) | SUM(sal) | AVG(sal) |
++--------+----------+----------+----------+----------+----------+
+|      1 |        4 |     3000 |     8000 |    18000 |     6000 |
+|      2 |        2 |     8000 |     9000 |    17000 |     8500 |
++--------+----------+----------+----------+----------+----------+
+
+select max(Sum_sal) from 
+(SELECT deptno, SUM(sal) sum_Sal from emp4
+GROUP BY deptno) abcd;
++--------------+
+| max(Sum_sal) |
++--------------+
+|        18000 |
++--------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
