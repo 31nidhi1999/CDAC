@@ -1,0 +1,432 @@
+Comparisson with NULL values excpetion in group factions
+-------------------------------------------------------------------------------------------------
+CREATE TABLE emp(ename char(1),sal int, comm int);
+
+select * from emp where com = null;
+Empty set (0.00 sec)
+The above query will not return anythin hence it is perssimistic query(searching null value)
+
+select * from emp where com IS null;
++-------+------+------+
+| ename | sal  | comm |
++-------+------+------+
+| B     | 6000 | NULL |
++-------+------+------+
+1 row in set (0.00 sec)
+tHE ABOVE QUEY WORKS & return the rows who have null commission
+
+
+select * from emp where commission != null;
+Empty set (0.00 sec)
+The above query will not return anything
+
+select * from emp where commission is not  null;
++-------+------+------+
+| ename | sal  | comm |
++-------+------+------+
+| A     | 5000 |  500 |
+| C     | NULL |  700 |
++-------+------+------+
+tHE ABOVE QUEY WORKS & return the rows who have null commission
+
+select sal + comm from emp;
++------------+
+| sal + comm |
++------------+
+|       5500 |
+|       NULL |
+|       NULL |
++------------+
+
+select sal + ifnull(comm,0) from emp;
++----------------------+
+| sal + ifnull(comm,0) |
++----------------------+
+|                 5500 |
+|                 6000 |
+|                 NULL |
++----------------------+
+
+
+select ifnull(sal,0) + ifnull(comm,0) from emp;
++--------------------------------+
+| ifnull(sal,0) + ifnull(comm,0) |
++--------------------------------+
+|                           5500 |
+|                           6000 |
+|                            700 |
++--------------------------------+
+
+
+greatest(x,y)
+----------------------------------------------------------------------------
+create table emp2(sal int);
+insert into emp2 values(1000),(2000),(3000),(4000),(5000);
+select greatest(sal,3000) from emp2;
++--------------------+
+| greatest(sal,3000) |
++--------------------+
+|               3000 |
+|               3000 |
+|               3000 |
+|               4000 |
+|               5000 |
++--------------------+
+
+TO set a lower limit on some value
+EG BONUS  = 10% SAL, MIN BONUS = 300
+We can use to copare str, date, time datetime;
+greatest(val1,val2, var3,.......255);
+greatest(col1,col2,col3,........255);
+
+
+SET  x =  GREASTEST(a,b,c,d);
+
+least(w,z);
+--------------------------------------------------
+Return the smaller of the 2 values
+Use to set an upper limit
+
+eg cashback = 10%amt;
+max cashback = 300
+select least(amt*.1,300) from orders;
+
+select least(sal,3000) from emp2;
++-----------------+
+| least(sal,3000) |
++-----------------+
+|            1000 |
+|            2000 |
+|            3000 |
+|            3000 |
+|            3000 |
++-----------------+
+
+select least(sal,3000,4000,50000) from emp2;
+least(val1,val2, var3,.......255);
+least(col1,col2,col3,........255);
+work with all datatypes
+
+set x = least(a,b,c,d);
+
+CASE keyword
+-----------------------------------------------------------
+create table emp3(sal int,deptno int);
+insert into emp3 values(1000,10),(2000,10),(3000,20),(4000,30),(5000,40);
+
+
+SELECT 
+CASE 
+WHEN deptno=10 then 'Training'
+WHEN deptno=20  then 'Exports'
+WHEN deptno=30 then 'Marketing'
+else 'Others'
+end "DEPTNAME"
+FROM EMP3; 
+
++-----------+
+| DEPTNAME  |
++-----------+
+| Training  |
+| Training  |
+| Exports   |
+| Marketing |
+| Others    |
++-----------+
+
+IF YOU DON'T SPECIFY ELSE & if 40 is present in the table then  it return null value  
+
+SELECT 
+CASE 
+WHEN deptno=10 then 'Training'
+WHEN deptno=20  then 'Exports'
+WHEN deptno=30 then 'Marketing'
+end "DEPTNAME"
+FROM EMP3;   
++-----------+
+| DEPTNAME  |
++-----------+
+| Training  |
+| Training  |
+| Exports   |
+| Marketing |
+| NULL      |
++-----------+
+
+
+SELECT 
+CASE 
+WHEN deptno=10 then 'Ten'
+WHEN deptno=20  then 'Twenty'
+WHEN deptno=30 then 'Thirty'
+WHEN deptno=40 then 'Forty'
+end "DEPTNAME"
+FROM EMP3; 
++----------+
+| DEPTNAME |
++----------+
+| Ten      |
+| Ten      |
+| Twenty   |
+| Thirty   |
+| Forty    |
++----------+
+
+SELECT 
+CASE 
+WHEN deptno!=10 then 'Ten'
+WHEN deptno=20  then 'Twenty'
+WHEN deptno=30 then 'Thirty'
+WHEN deptno=40 then 'Forty'
+end "DEPTNAME"
+FROM EMP3; 
++----------+
+| DEPTNAME |
++----------+
+| NULL     |
+| NULL     |
+| Ten      |
+| Ten      |
+| Ten      |
++----------+
+
+SELECT deptno,sal,sal*12 "Annual",
+CASE
+WHEN deptno=10 then sal*12*0.4
+WHEN deptno=20  then sal*12*0.3
+WHEN deptno=30 then sal*12*0.2
+else sal*12*0.2
+end "HRA"
+FROM EMP3
+ORDER BY 1; 
++--------+------+--------+---------+
+| deptno | sal  | Annual | HRA     |
++--------+------+--------+---------+
+|     10 | 1000 |  12000 |  4800.0 |
+|     10 | 2000 |  24000 |  9600.0 |
+|     20 | 3000 |  36000 | 10800.0 |
+|     30 | 4000 |  48000 |  9600.0 |
+|     40 | 5000 |  60000 | 12000.0 |
++--------+------+--------+---------+
+
+
+IF sal < 3000, REMARK ='Low Income'
+IF sal = 3000, REMARK ='Middle Income'
+IF sal > 3000, REMARK ='High Income'
+
+SELECT SAL,
+CASE 
+WHEN SIGN(sal - 3000) =1 THEN 'High Income'
+WHEN SIGN(SAL - 3000) =-1 THEN 'Low Income'
+else 'Middle Income'
+end "REMARK"
+from emp3
+ORDER BY 1;
++------+---------------+
+| SAL  | REMARK        |
++------+---------------+
+| 1000 | Low Income    |
+| 2000 | Low Income    |
+| 3000 | Middle Income |
+| 4000 | High Income   |
+| 5000 | High Income   |
++------+---------------+
+
+environment FUNCTION
+----------------------------------------
+SELECT DATABASE() FROM DUAL;
++------------+
+| DATABASE() |
++------------+
+| classwork  |
++------------+
+
+have 6 extra coloumn in every table
+username,date & time when the row was inserted
+username,date & time when the row was updated
+
+
+SELECT USER() FROM emp3;
++-----------------+
+| USER()          |
++-----------------+
+| nidhi@localhost |
+| nidhi@localhost |
+| nidhi@localhost |
+| nidhi@localhost |
+| nidhi@localhost |
++-----------------+
+
+SHOW CHARACTER set;
+------------------------------------------------------
+
+give information about envirment
+
+
+group FUCTIONS
+------------------------------------------
+Group fun are also know as aggregate 
+
+
+create table emp4(
+	empno int(1),
+	ename varchar(10),
+	sal   float,
+	deptno int(1),
+	job  char(1),
+	mgr int(1)
+);
+insert into emp4 (empno,ename,sal,deptno,job,mgr)	
+values
+(1,'ARUN',8000,1,'M',4),
+(2,'ALI',7000,1,'C',1),
+(3,'Kiran',3000,1,'C',1),
+(4,'JACK',9000,2,'M',null),
+(5,'THOMAS',8000,2,'C',4);
+
+
+Multipl row fucntion
+----------------------------------------------------------
+Till now we have work wit single row function
+OPERATION ON 1 ROW AT A TIME
+eg upper(ename)
+
+
+in Multiple row all row at  a time
+
+SELECT SUM(SAL) from emp4;
+MYSQL first crete an array & fetach the sal column  all value in 
+Server RAM 
+
+Null values are not counted by group function(we will get the value)
++----------+
+| SUM(SAL) |
++----------+
+|    35000 |
++----------+
+
+insert into emp4 (empno,ename,sal,deptno,job,mgr)values(6,'Nidhi',null,1,'M',4);
+
+SELECT AVG(sal) FROM emp4;
+(the 6th row sallary is null)
++----------+
+| AVG(sal) |
++----------+
+|     7000 |
++----------+
+
+
+SELECT AVG(ifnull(sal,0)) FROM emp4;
+(the 6th row sallary is not null)
+
+
+
++--------------------+
+| AVG(ifnull(sal,0)) |
++--------------------+
+|  5833.333333333333 |
++--------------------+
+
+
+
+SELECT MIN(SAL) from emp4;
++----------+
+| MIN(SAL) |
++----------+
+|     3000 |
++----------+
+
+
+SELECT MAX(SAL) from emp4;
++----------+
+| MAX(SAL) |
++----------+
+|     9000 |
++----------+
+
+How many employee received salary in emp4?
+SELECT COUNT(SAL) from emp4;
+ONLY RETURN COUNT where sal is not null
++------------+
+| COUNT(SAL) |
++------------+
+|          5 |
++------------+
+
+How many employee in emp4?
+SELECT COUNT(*) from emp4;
+RETURN COUNT where sal is  null also
++----------+
+| COUNT(*) |
++----------+
+|        6 |
++----------+
+
+How many employee not received salary in emp4?
+SELECT COUNT(*) -COUNT(sal) from emp4;
++----------------------+
+| COUNT(*) -COUNT(sal) |
++----------------------+
+|                    1 |
++----------------------+
+
+
+SELECT SUM(sal)/count(*) from emp4;
+Faster than Avg(ifnull(sal,0)
++-------------------+
+| SUM(sal)/count(*) |
++-------------------+
+| 5833.333333333333 |
++-------------------+
+
+SELECT sum(Sal) from emp4 where deptno=1;
+
+only fetch those sal whose dept no is 1 in server RAM
++----------+
+| sum(Sal) |
++----------+
+|    18000 |
++----------+
+
+COUNT QUERY
+SELECT COUNT(*) FROM emp4
+ WHERE sal > 7000;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+
+STDDEV(column)
+VARIANCE(column)
+
+
+MIN,MAX,COUNT  sal, ename, hiredate but can't take AVG of ename,hiredate
+SELECT COUNT(sal), MIN(sal),MAX(sal),SUM(sal), AVG(sal) FROM emp4;
++------------+----------+----------+----------+----------+
+| COUNT(sal) | MIN(sal) | MAX(sal) | SUM(sal) | AVG(sal) |
++------------+----------+----------+----------+----------+
+|          5 |     3000 |     9000 |    35000 |     7000 |
++------------+----------+----------+----------+----------+
+
+
+Restriction on group function
+
+1)can't select column of table along with group fucntion
+SELECT ename, MAX(sal) from emp4;
+
+2)U can't select single row function with group fucntion
+SELECT upper(ename), MAX(sal) from emp4;
+
+3)can't user group fucntion in where clause
+SELECT *  from emp4 where sal > avg(sal);
+
+
+
+
+
+
+
+
+
+
