@@ -1,0 +1,95 @@
+CREATE TABLE DEPT(
+	deptno int(1),
+	dname varchar(15),
+	loc varchar(10)
+);
+
+insert into dept values
+(1,'TRN' ,'MUM'),
+(2,'EXP','DLH'),
+(3,'MKTG','CAL
+
+ select * from dept;
++--------+-------+------+
+| deptno | dname | loc  |
++--------+-------+------+
+|      1 | TRN   | MUM  |
+|      2 | EXP   | DLH  |
+|      3 | MKTG  | CAL  |
++--------+-------+------+
+
+Uneccasry wastge of data  is data reductancy
+
+JOINTS
+------------------------------------------------------------------------------
+Internally all joins are based on nested for loop
+
+all data is not stored in one table data is stored in multile table 
+if you want to see the column of 2 tables then you have to write a joint
+
+The postion of column in SELECT clause will determine the postion of col  in output WHERE clause can be written in any sequence
+
+In order for the join to work faster,preferably the driving table shuld be table with leasse number of rows
+
+dept <--- driving table
+emp4 <--- driven table
+
+Faster processing when driving table is size is smaller
+
+(fast)
+SELECT ename , dname
+FROM   emp4,dept
+WHERE dept.deptno = emp4.deptno;
+
+(slow)
+emp4 <--- driving table
+dept <--- driven table
+SELECT ename , dname
+FROM   dept,emp4
+WHERE dept.deptno = emp4.deptno;
+
++--------+-------+
+| ename  | dname |
++--------+-------+
+| ARUN   | TRN   |
+| ALI    | TRN   |
+| Kiran  | TRN   |
+| JACK   | EXP   |
+| THOMAS | EXP   |
+| Nidhi  | TRN   |
++--------+-------+
+
+The common column in both the tables is deptno,the common column that is present in both the table the column name need not be the same in both the tables, because the same column may have a different meaning in the other table
+
+SELECT ename , dname
+FROM   dept,emp4
+WHERE dept.x = emp4.y;
+
+the datatype of common column in both the table should be the same & there has to be some logical reason on whose basis you are writing the join
+SELECT ename , dname
+FROM   dept,emp4
+WHERE dept.deptno = emp4.empno;
+
+To make the output more presentatble :-
+SELECT dname,ename from emp4,dept
+WHERE dept.deptno = emp4.deptno;
+
+
+It's good to dispaly lots of column in the output, it become richer and more meaningful
+SELECT dname,loc,ename,job,sal from emp4,dept
+WHERE dept.deptno = emp4.deptno;
+	
+Column ambiguously define(if the common column had different columnname is both table then this proble would not have arisen)
+		(*)	
+SELECT deptno,dname,loc,ename,job,sal from emp4,dept
+WHERE dept.deptno = emp4.deptno;
+
+
+Its a googd programming pratice to user tablename.columnname for all the column, because it make the SELECT state
+SELECT dept.deptno,dept.dname,dept.loc,emp4.ename,emp4.ejob,emp4.esal from emp4,dept
+WHERE dept.deptno = emp4.deptno;
+
+or 
+
+SELECT emp.deptno,dept.dname,dept.loc,emp4.ename,emp4.ejob,emp4.esal from emp4,dept
+WHERE dept.deptno = emp4.deptno;
