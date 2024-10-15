@@ -140,6 +140,35 @@ WHERE sal IN(
 |     5 | THOMAS | 8000 |      2 | C    |    4 |
 +-------+--------+------+--------+------+------+
 
+ALL -> LOGICAL AND
+ANY -> LOGCAL OR
+IN -> LOGICAL OR
+
+Sub query in HAVING clause
+
+Problem statement ::  find te max sal from dept number
+SELECT deptno,SUM(sal)
+FROM emp4
+GROUP BY deptno
+HAVING sum(Sal)=(
+	SELECT MAX(sum_sal)
+	FROM (
+		SELECT deptno, SUM(sal) sum_sal
+		FROM emp4 
+		GROUP BY deptno
+	)A
+);
+
++--------+----------+
+| deptno | SUM(sal) |
++--------+----------+
+|      1 |    18000 |
++--------+----------+
+
+
+
+
+
 
 
 
