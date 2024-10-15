@@ -1,0 +1,139 @@
+create table Employee1
+(
+	empno1 int(1),
+	ename varchar(1)
+);
+
+create table Employee2
+(
+	empno int(1),
+	ename varchar(1)
+);
+
+insert into Employee1
+values
+(1,'A'),
+(2,'B'),
+(3,'C');
+
+insert into Employee2
+values
+(1,'A'),
+(2,'B'),
+(4,'D'),
+(5,'E');
+
+SET operators
+==================================================
+Based on set theory
+* Foundaton of RDBMS based on SET theory.
+* Founder of RDBMS  -> Dr.E.F .Codd(1968)
+
+SELECT * FROM Employee1
+UNION
+SELECT * FROM Employee2;
++--------+-------+
+| empno1 | ename |
++--------+-------+
+|      1 | A     |
+|      2 | B     |
+|      3 | C     |
+|      4 | D     |
+|      5 | E     |
++--------+-------+
+
+UNION -> will commine the output of both SELECT statements & it will suppress the duplicated
+
+The structure of two table would be diffrent but the structure of the 2 SELECT statements has to be the same, number of columns in bot & the correspoinding datatypes have match
+
+SELECT empno1 empno,ename FROM Employee1
+UNION
+SELECT empno,ename FROM Employee2
+ORDER BY 1 desc;
+
++-------+-------+
+| empno | ename |
++-------+-------+
+|     5 | E     |
+|     4 | D     |
+|     3 | C     |
+|     2 | B     |
+|     1 | A     |
++-------+-------+
+
+UNION ALL
+---------------------------------------------
+UNION ALL will combine the output of both the SELECT statements & the duplicate are not suppressed
+
+SELECT empno1 empno,ename FROM Employee1
+UNION ALL
+SELECT empno,ename FROM Employee2
+ORDER BY 1 desc;
++-------+-------+
+| empno | ename |
++-------+-------+
+|     5 | E     |
+|     4 | D     |
+|     3 | C     |
+|     2 | B     |
+|     2 | B     |
+|     1 | A     |
+|     1 | A     |
++-------+-------+
+
+INTERSECT 
+---------------------------------------------
+* Intersect will return what is common in both the SELECT statements and the duplicates are suppressed
+SELECT empno1 empno,ename FROM Employee1
+INTERSECT
+SELECT empno,ename FROM Employee2
+ORDER BY 1 desc;
++-------+-------+
+| empno | ename |
++-------+-------+
+|     2 | B     |
+|     1 | A     |
++-------+-------+
+
+Except 
+---------------------------------------------
+*  Except will return what is present in the first SELECT statement and NOT present in the second SELECT statement and the duplicates are suppressed
+
+SELECT empno1 empno,ename FROM Employee1
+EXCEPT
+SELECT empno,ename FROM Employee2
+ORDER BY 1 desc;
++-------+-------+
+| empno | ename |
++-------+-------+
+|     3 | C     |
++-------+-------+
+
+
+You can use SET operators for any number of SELECT statement upper limit is 255
+The ORDER By clause will come after the all the SELECT statements
+Exceution from LEFT to Right
+Precidency of  exceution by writing the SQL query in ()
+
+
+1)Used in OUTER JOIN
+2)we can have 2 -3 or n number of table we can use SET operators
+3)
+
+SELECT  JOB FROM EMP4 WHERE deptno=1
+INTERSECT
+SELECT  JOB FROM EMP4 WHERE deptno=2;
++------+
+| JOB  |
++------+
+| M    |
+| C    |
++------+
+
+SELECT  JOB FROM EMP4 WHERE deptno=1
+EXCEPT
+SELECT  JOB FROM EMP4 WHERE deptno=2;
+
+Empty set 
+
+

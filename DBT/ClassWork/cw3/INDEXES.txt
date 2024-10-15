@@ -1,0 +1,106 @@
+CREATE TABLE EMP5(
+	empno int(1),
+	ename varchar(1),
+	sal int(6),
+	deptno int(1)
+);
+
+INSERT INTO EMP5 
+VALUES
+(null,'A',5000,1),
+(null,'A',6000,1),
+(null,'C',7000,1),
+(null,'D',9000,2),
+(null,'E',8000,2);
+
+
+INDEXES
+===============================
+INDEXES are present in all RDBMS,IT IS PRESENT IN PROGRAMMING LANGUAGE ALSO.
+To speed up the search operation is called indexing(for faster access).
+To speed up SELECT Statemet with WHERE clause.
+In mysql the indexs are automatically invoked by the system as and when required
+In MYSQL the indexes are automatically updated by the system for all the DML operations
+Duplicate values ate stored in an index
+NO upper limit on the number of indexes per table
+lrger the number of the indexs slower would be the DML operations(if we and new row in table we need to update indexes too).
+can't index text & BLOB column
+NULL values are not stored in an index
+IF you have 2or more indepent column in the where clause then you create seperae indexs for each column, my sql use the necessary indexes as and when required
+composie index :: combine 2 or more inter-dependent columns together in a single index
+
+Index key column or set of column on whos basic the index has been cretaed 
+
+Exceution plan ::  plan created by MYSQL as to how it is going to execute the SELECT statement
+
+in mysql u can cobimed 32 column in composite index
+
+IND_empno
+
+
+in other RDBMS
+use index ind_empo;
+
+CREATE 
+
+SELECT * FROM EMP4 WHERE empno=1;
+RULES FOR CREATING INDEXS
+rule1 :: to speed up the SELECT statement with a WHERE clause 
+
+if SELECT statement is retrives < 25% of table data then use indexing otherwise don't use 
+Your Primary key column shoud wals be the indexed
+
+Column coloum IS JOIN OPERATIONS should always be index
+
+CREATE INDEX i_emp4_empno on emp4(empno);  // by default
+CREATE INDEX i_emp4_empno on emp4(empno desc);
+CREATE INDEX i_emp4_ename on emp4(ename);
+CREATE INDEX i_emp4_sal on emp4(sal);
+
+
+Compiste key
+CREATE INDEX i_emp4_deptno_empno on emp4(deptno,empno);
+CREATE INDEX i_emp4_deptno_empno on emp4(deptno desc,empno desc);perfoorms one extra fuction it won't allow the user to INSERT/UPDATE duplicate value in EMPNO
+
+At the time of creating UNIQUE index if you already have duplicate values in EMPNO, THEN BY SQL will not allowed you to create unique index
+
+
+CREATE UNIQUE INDEX i_emp4_empno on emp4(empno);
+
+if i drop my table or coloum then the associated indexes are drop automatically
+
+show indexes from emp4;
++-------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name     | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| emp4  |          1 | i_emp4_empno |            1 | empno       | A         |           6 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+
+To see all indeexs  on all table in databasese
+SELECT * FROM statistics;
+
+Drop 
+DROP INDEX  i_emp_empno ON emp4;
+
+
+My sql will not allowed to create index on column for more than one time 
+
+Types of indexs
+1)Normal Index
+2)Normal Composite Index
+3)Unique Index
+4)Unique Compiste Index
+5)Clustered Index
+6)Non Clusted Index
+7)Covering Index
+8)Full-Text Index
+9)Filtered Index
+10)Spatial Index
+11)XML Index
+12)Hash Index
+13)Bitmap Index
+14)Index-Organized Table
+15)Table & Index Partitioning
+16)Gloabal & Local Indexes
+17)Index on Abstract Column
+

@@ -1,0 +1,42 @@
+PSEUDO Columns
+* Fake columns (Virtual columns)
+* it's not a column of the table , but you can use it in SELECT statement
+
+eg
+a)Computed column (Annual =  sal * 12)
+b) Expressions (Net_earnings = sal + comm -tax)
+c) Function-based column AVG_sal = AVG(sal), R_sal=round(sal,-3)
+
+RDBMS suplied PSEUDO columns :-
+
+SELECT rowid,ename,sal FROM emp4;
+
+SELECT
+    ROW_NUMBER() OVER (ORDER BY empno) AS RowID,
+    ename,
+    sal
+FROM
+    emp4;
+
+rowid is a PSEUDO column, it stand for ROW identfier.
+ROWID is the actuall physical memory location in the DB server hd where that row is located
+IT will always be in ascending order of ROWID
+ROWID is not a column of the table but you can use it in SELECT statement
+WHEN you SELECT from a table , the order of rows in the output depends on the row address; it will always be in ascending order of rowid
+ROWID is a fixed -length encrypted string of 18 characters
+When you UPDATE a row if the row length is decrasing the the address (rowid ) is will not change
+When you UPDATE a row, if thre row length is increasing & if free space is not avaible then the address will change
+No two row of any table in entire  DB server  HD CAN HAVE SAME ROWID/;.
+rowid work as unique identifirer froir emp
+
+
+USE :: you can use rowid to UPDATE or DELETE the duplicate row
+a)ROW locking
+b)to make indexes
+c)to mange the cusors
+d)row id work as unqiue identfier to distingiush between two rows
+e)row managment
+
+rowid iwork as an unique identfier for every row in the database
+SELECT ROW_NUMBER() rowid, ename, sal
+FROM emp4;
