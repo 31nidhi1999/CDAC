@@ -1,0 +1,60 @@
+TYPES of relatiopnship
+
+1:1    (dept:depthead)
+1:MANY (depthead : emp)
+MANY:1  (emp : depthead)
+MANY:MANY 
+
+
+projecṭ
+Create table project
+(
+	projNo varchar(2),
+	clientname varchar(20),
+	descrip varchar(15)
+);
+
+
+insert into project 
+values
+('P1','Deloitte','CGS'),
+('P2','MorganStan','AMS'),
+('P3','BNP Paribas','Macros'),
+('P4','ICICI Bank','PPS'),
+('P5','AMFI','Websitedevl');
+
+
+Intersection table
+Reqruired for MANY:: MANY
+
+create table project_emp(
+	projNo varchar(2),
+	empno  int(1)
+);
+insert into project_emp 
+values
+('P1',1),
+('P1',2),
+('P1',4),
+('P2',1),
+('P2',5),
+('P3',2),
+('P3',4);
+
+
+select  clientname,ename from emp4,project_emp,project
+WHERE project_emp.empno = emp4.empno
+AND   project_emp.projNo=project.projNo
+ORDER BY 1,2;
+
++-------------+--------+
+| clientname  | ename  |
++-------------+--------+
+| BNP Paribas | ALI    |
+| BNP Paribas | JACK   |
+| Deloitte    | ALI    |
+| Deloitte    | ARUN   |
+| Deloitte    | JACK   |
+| MorganStan  | ARUN   |
+| MorganStan  | THOMAS |
++-------------+--------+
