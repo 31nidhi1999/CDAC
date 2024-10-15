@@ -1,0 +1,249 @@
+SELECT UPPER(dname),SUM(sal)
+FROM emp4,dept
+WHERE emp4.deptno=dept.deptno
+GROUP BY dname
+HAVING SUM(sal)>10000
+ORDER BY 1;
+
++-------+----------+
+| dname | SUM(sal) |
++-------+----------+
+| EXP   |    17000 |
+| TRN   |    18000 |
++-------+----------+
+
+
+TYPES OF JOINS
+------------------------------------------------------------------------------
+1) Equijoin(Natural Join)::
+
+Most frequently used join
+Joined based on equality condition
+Joined user for loop concept
+Shows matching rows of both the tables
+use :: a) dname,ename  b)cname,sname 
+
+SELECT dname,ename
+FROM emp4,dept
+WHERE emp4.deptno=dept.deptno;
++-------+--------+
+| dname | ename  |
++-------+--------+
+| TRN   | ARUN   |
+| TRN   | ALI    |
+| TRN   | Kiran  |
+| EXP   | JACK   |
+| EXP   | THOMAS |
+| TRN   | Nidhi  |
++-------+--------+
+
+2)Inequijoin(Non - equijoin)
+
+join based on inequality condition
+show the non matching rows of both the tables
+Joined user for loop concept
+
+SELECT dname,ename
+FROM emp4,dept
+WHERE emp4.deptno!=dept.deptno
+ORDER BY 1;
+
+use :: Use to display exception reports
+	   customer who's transaction is pending
+
++-------+--------+
+| dname | ename  |
++-------+--------+
+| EXP   | ARUN   |
+| EXP   | ALI    |
+| EXP   | Kiran  |
+| EXP   | Nidhi  |
+| MKTG  | ARUN   |
+| MKTG  | ALI    |
+| MKTG  | Kiran  |
+| MKTG  | JACK   |
+| MKTG  | THOMAS |
+| MKTG  | Nidhi  |
+| TRN   | JACK   |
+| TRN   | THOMAS |
++-------+--------+
+
+
+3)OUTER join
+
+a) HALF OUTER JOIN(use 1 DO WHILE Loop)
+	1)RIGHT OUTER JOIN
+	2)LEFT OUTER JOIN
+b) FULL OUTER JOIN(NESTED DO WHILE loop)
+
+OUTER JOIN use the concept of DO WHILE loop.(where the table opposite to (+) use DO WHILE lopp & another table use for loop for iteration )
+
+Join with +  sign or if you use the keyword OUTER
+show matching row of both the table  +  the non matching row of OUTER table
+Master details report(Parent -child report)
+dept -- partent table/Master , emp4 is child table/details table
+
+OTHER TABLE -> table which is on opposite side of (+) sign
+
+1)RIGHT OUTER JOINSELECT dname,ename
+FROM emp4,dept
+WHERE dept.deptno=emp4.deptno (+);
+
+OR
+
+SELECT dname, ename
+FROM emp4
+RIGHT OUTER JOIN dept ON dept.deptno = emp4.deptno;
+
++-------+--------+
+| dname | ename  |
++-------+--------+
+| TRN   | Nidhi  |
+| TRN   | Kiran  |
+| TRN   | ALI    |
+| TRN   | ARUN   |
+| EXP   | THOMAS |
+| EXP   | JACK   |
+| MKTG  | NULL   |
++-------+--------+
+
+2)LEFT OUTERJOIN
+SELECT dname,ename
+FROM emp4,dept
+WHERE dept.deptno(+)=emp4.deptno;
+
+OR 
+
+SELECT dname, ename
+FROM emp4
+LEFT OUTER JOIN dept ON dept.deptno = emp4.deptno;
++-------+--------+
+| dname | ename  |
++-------+--------+
+| TRN   | ARUN   |
+| TRN   | ALI    |
+| TRN   | Kiran  |
+| EXP   | JACK   |
+| EXP   | THOMAS |
+| TRN   | Nidhi  |
++-------+--------+
+
+
+b) FULL OUTER JOIN(NESTED DO WHILE loop)
+show matching rows of both the tables + non matching rows from both the tables
+UNION of right OUTER JOIN & LEFT OUTER JOIN We can do UNION of SELECT statements
+FULL OUTER JOIN IS NOT A KEYWORD HENCE WE USE UNION KEYWORD
+
+SELECT dname,ename
+FROM emp4,dept
+WHERE dept.deptno=emp4.deptno (+);
+UNION
+SELECT dname,ename
+FROM emp4,dept
+WHERE dept.deptno(+)=emp4.deptno;
+
+OR
+
+SELECT dname, ename
+FROM emp4
+LEFT OUTER JOIN dept ON dept.deptno = emp4.deptno
+UNION
+SELECT dname, ename
+FROM emp4
+RIGHT OUTER JOIN dept ON dept.deptno = emp4.deptno;
+
++-------+--------+
+| dname | ename  |
++-------+--------+
+| TRN   | ARUN   |
+| TRN   | ALI    |
+| TRN   | Kiran  |
+| EXP   | JACK   |
+| EXP   | THOMAS |
+| TRN   | Nidhi  |
+| MKTG  | NULL   |
++-------+--------+
+
+
+
+INNER JOIN
+-------------------
+by default every join is inner join
+using the keyword OUTERwhat make is an OUTER JOIN
+
+
+4) Cartesian JOIN(Cross join)
+
+join without a WHERE  clause 
+each row of driving table is combined with each & every row of driven table 
+it take the cross product of 2 table & therefore it's also known as Cross Join
+
+use :: For printing purpose for eg in student table you have all the student name , in subject table you have all the subject name ; when you are printing mark sheet for student, every student name is combined with each & every subject name
+
+slow processing
+SELECT dname,ename from dept,emp4;
+
+fast processing 
+SELECT dname,ename from emp4,dept;
++-------+--------+
+| dname | ename  |
++-------+--------+
+| MKTG  | ARUN   |
+| EXP   | ARUN   |
+| TRN   | ARUN   |
+| MKTG  | ALI    |
+| EXP   | ALI    |
+| TRN   | ALI    |
+| MKTG  | Kiran  |
+| EXP   | Kiran  |
+| TRN   | Kiran  |
+| MKTG  | JACK   |
+| EXP   | JACK   |
+| TRN   | JACK   |
+| MKTG  | THOMAS |
+| EXP   | THOMAS |
+| TRN   | THOMAS |
+| MKTG  | Nidhi  |
+| EXP   | Nidhi  |
+| TRN   | Nidhi  |
++-------+--------+
+
+
+5)SELF JOINS
+JOINING A TABLE TO ITSELF
+used when parent column & Child column, both are present in te same table
+slowest joined (based on recurssion)
+
+
+SElECT a.ename, b.ename 
+FROM emp4 b,emp4 a
+WHERE a.mgr = b.empno;
+
++--------+-------+
+| ename  | ename |
++--------+-------+
+| ARUN   | JACK  |
+| ALI    | ARUN  |
+| Kiran  | ARUN  |
+| THOMAS | JACK  |
+| Nidhi  | JACK  |
++--------+-------+
+
+Cartesian join is the fasted join because there is no HWERE clause & therefore 
+there is no searching involved
+
+JONING 3 or 4 TABLES
+
+Create table depthead
+(
+	deptno int(1),
+	Dhead varchar(10)
+);
+
+insert into depthead values(1,'Arun'),(2,'Jack');
+
+
+SELECT dname,ename,Dhead
+FROM  emp4,dept,depthead
+WHERE dept.deptno = depthead.deptno
+AND   emp4.deptno = dept.deptno;
