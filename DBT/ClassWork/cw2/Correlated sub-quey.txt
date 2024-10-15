@@ -1,0 +1,86 @@
+Correlated sub-quey
+
+use EXIST operator, This is the exception when sub-quey is fasted than join
+
+Display the dname that contain employees:-
+solution1 :-
+
+SELECT deptno from emp4;
+
+SELECT DISTINCT from emp4;
+
+SELECT dname
+FROM dept 
+WHERE deptno= any(
+	SELECT DISTINCT deptno 
+	from emp4
+);
+
+OR
+
+SELECT dname
+FROM dept 
+WHERE deptno IN(
+	SELECT DISTINCT deptno 
+	from emp4
+);
++-------+
+| dname |
++-------+
+| TRN   |
+| EXP   |
++-------+
+
+SELECT dname
+FROM dept 
+WHERE deptno NOT IN(
+	SELECT DISTINCT deptno 
+	from emp4
+);
++-------+
+| dname |
++-------+
+| MKTG  |
++-------+
+
+
+This is the exception when sub-quey is faster than Join if you have join alongwith  DISTINCT to make it work faster than join
+If you have a join alongwith DISTINCT, to make it work faster user Correlated sub-quey(use EXIST)
+
+SELECT DISTINCT dname from emp4,dept 
+WHERE emp4.deptno = dept.deptno;
+
+fist the main query is executed for every row returned by main query, it will run the sub-quey once.
+sub-quey return boolean value TRUE or Flase value
+If sub-quey retuns TRUE value then main query is eventiually executed for that row
+If sub-quey retuns False value then main query is not executed for that row
+unlike earler we do not use DISTINCT here therefore no sorting take place in SERVER RAM this speed it uo
+Unlike a JOIN the number of FULL table scan is reduce this futher speed it up
+
+SELECT dname
+FROM dept
+WHERE EXISTS(
+	SELECT deptno
+	FROM emp4
+	WHERE dept.deptno = emp4.deptno
+);
+
++-------+
+| dname |
++-------+
+| TRN   |
+| EXP   |
++-------+
+
+SELECT dname
+FROM dept
+WHERE NOT EXISTS(
+	SELECT deptno
+	FROM emp4
+	WHERE dept.deptno = emp4.deptno
+);
++-------+
+| dname |
++-------+
+| MKTG  |
++-------+
