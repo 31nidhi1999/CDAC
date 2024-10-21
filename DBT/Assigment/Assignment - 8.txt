@@ -1,0 +1,68 @@
+Assignment –8
+Formatting Query output.
+
+
+1) Assume each salesperson has a 12% commission. Write a query on the orders 
+table that will produce the order number, the salesperson number, and the amount 
+of the salesperson’s commission for that order.
+
+mysql> select Onum, Snum, .12*Amt as Commission from orders;
++------+------+------------+
+| Onum | Snum | Commission |
++------+------+------------+
+| 3001 | 1007 |       2.24 |
+| 3003 | 1001 |      92.06 |
+| 3002 | 1004 |     228.01 |
+| 3005 | 1002 |     619.25 |
+| 3006 | 1007 |     131.78 |
+| 3009 | 1003 |     205.59 |
+| 3007 | 1002 |       9.09 |
+| 3008 | 1001 |     566.76 |
+| 3010 | 1002 |     157.19 |
+| 3011 | 1001 |    1187.03 |
++------+------+------------+
+
+2) Write a query on the Customers table that will find the highest rating in each city. 
+Put the output in this form:
+For the city (city), the highest rating is : (rating).
+
+mysql> select city, max(rating) as rating from customers group by city;
++----------+--------+
+| city     | rating |
++----------+--------+
+| London   |    100 |
+| Rome     |    200 |
+| San Jose |    300 |
+| Berlin   |    300 |
++----------+--------+
+
+3) Write a query that lists customers in descending order of rating. Output the rating 
+field first, followed by the customer’s name and number.
+
+mysql> select rating, cname, cnum from customers order by rating desc;
++--------+----------+------+
+| rating | cname    | cnum |
++--------+----------+------+
+|    300 | Grass    | 2004 |
+|    300 | Cisneros | 2008 |
+|    200 | Giovanni | 2002 |
+|    200 | Liu      | 2003 |
+|    100 | Hoffman  | 2001 |
+|    100 | Clemens  | 2006 |
+|    100 | Pereira  | 2007 |
++--------+----------+------+
+
+4) Write a query that totals the orders for each day and places the results in 
+descending order.
+
+mysql> select count(*) as Total_Orders, Odate from orders
+    -> group by Odate
+    -> order by Total_Orders desc;
++--------------+------------+
+| Total_Orders | Odate      |
++--------------+------------+
+|            5 | 1990-10-03 |
+|            2 | 1990-10-04 |
+|            2 | 1990-10-06 |
+|            1 | 1990-10-05 |
++--------------+------------+
