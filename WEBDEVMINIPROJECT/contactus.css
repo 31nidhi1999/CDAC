@@ -1,0 +1,65 @@
+
+body{
+    margin: 0;
+    margin: 0PX;
+         background-image: image-set("images/contactusbd.jpg");
+         background-repeat: no-repeat;
+         background-position: center;
+        background-size: cover;
+}
+
+
+#div1{
+    width: 800px;
+    height: 500px;
+    margin: 100px auto;
+    background:rgba(0,0,0,0.1);
+}
+.left{
+    width: 50%;
+    height: inherit;
+    display: inline-block;
+ 
+    text-align: center;
+}
+.right{
+    float: right;
+
+    width: 50%;
+    height: inherit;
+    display: inline-block;
+}
+input{
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    border-top:0px ;
+    border-right:0px ;
+    border-left:0px ;
+}
+textarea{
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    border-top:0px ;
+    border-right:0px ;
+    border-left:0px ;
+}
+
+button{
+    width: 50%;
+    background: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    transition: backgrounf 0.4s;
+    cursor: pointer;
+
+}
+button:hover{
+    background:  rgb(72, 72, 120);
+    color: black;
+}
+
