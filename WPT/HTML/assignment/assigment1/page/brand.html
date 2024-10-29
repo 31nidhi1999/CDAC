@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+    nav{
+        /*background: rgb(164, 99, 230);*/
+        width: 100%;
+        height: 100px;
+    }
+    #brand-name{
+        padding-left: 20px;
+        position: absolute;
+         top: 30px;
+         font-size: 20px;
+         font-family:  'lucida calligraphy';
+    }
+    #logo1{
+        background:rgb(164, 99, 230);
+        border-radius: 45px 45px 45px 45px;
+        width: 70px;
+        height: 70px;
+    }
+    #nav-link{
+       
+            float: right;
+            padding-right: 30px;
+            
+            margin-top: 20px;
+            font-size: 20px;
+    }
+    #nav-link a{
+        margin-right: 30px;
+        text-decoration: none;
+        background: white;
+        width: 30px;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 5px 5px 5px 5px;
+        cursor: pointer;
+        transition: background 0.4s;
+    }
+
+    #nav-link a:hover{
+        background: rgb(164, 99, 230);
+        color: white;
+    }
+    #intro{
+        text-align: center;
+    }
+    #description{
+        font-size: 15px;
+        margin-top: 20px;
+        font-family: 'Segoe UI';
+        font-weight: 50;
+    }
+    button{
+        width: 100px;
+        background: white;
+        font-size: 20px;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px 10px 10px 10px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.4s;
+    }
+    button:hover{
+        background: rgb(164, 99, 230);
+        color: white;
+    }
+    #row-container{
+        width:100%;
+        height:400px;
+        margin-top: 30px;
+        
+    }
+    #section1{
+        width: 33%;
+        height: inherit;
+        /*background-color: green;*/
+        display: inline-block;
+        padding-top: 20px;
+
+    }
+    #section2{
+        width: 33%;
+        height: inherit;
+         /*background-color: green;*/
+        display: inline-block;
+        padding-top: 20px;
+
+    }
+    #section3{
+        width: 33%;
+        height: inherit;
+        /*background-color: green;*/
+        display: inline-block;
+        padding-top: 20px;
+    }
+    img{
+        width: 420px;
+        height: 280px;
+        padding-left: 30px;
+    }
+    body{
+        margin: 0;
+    }
+   </style>
+</head>
+<body>
+    <nav>
+        <img src="../image/logo.png" id="logo1">
+        <span id="brand-name">Nourish Skincare</span>
+        <div id="nav-link">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Gallery</a>
+            <a href="#">Blogs</a>
+        </div>
+    
+    </nav>
+    <div id="intro">
+        <h2>This is a dummy heading</h2>
+        <div id="description">
+           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi exercitationem velit adipisci inventore labore et dolore deserunt temporibus, repellat mollitia libero quasi, quae excepturi iste eveniet, natus consequuntur vel nulla! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos ipsum quod maiores ex quia nostrum nisi eos omnis a, asperiores praesentium! Rerum temporibus, et harum at mollitia corrupti eveniet fugit? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, saepe, accusantium totam quod sunt cupiditate hic officiis molestiae iusto earum tempora reiciendis rerum unde qui labore nam eveniet numquam obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas facilis officia veniam? Consequatur, id doloribus corrupti numquam ex rem. Iusto mollitia facere blanditiis amet, autem repudiandae sed tenetur aperiam voluptates. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis voluptas sit sed error rem deserunt, consequuntur fugiat cumque! Sint nobis provident labore, sed magni quas itaque nihil modi repudiandae aliquam. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae earum libero reprehenderit odio animi, mollitia aut perspiciatis cumque minima maiores dicta? Suscipit laudantium numquam explicabo obcaecati nisi eligendi. Praesentium, quidem?</p>
+        </div>
+        <button>Click Me</button>
+     </div>
+     <section id="row-container">
+        <div id="section1">
+            <img src="../image/1.jpg">
+        </div>
+        <div id="section2">
+            <img src="../image/1.jpg">
+        </div>
+        <div id="section3">
+            <img src="../image/1.jpg">
+        </div>
+     </section>
+</body>
+</html>

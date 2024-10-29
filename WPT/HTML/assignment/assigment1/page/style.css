@@ -1,0 +1,48 @@
+form{
+    background: rgb(164, 99, 230);
+    height: 100%;
+    width: 700px;
+    margin: 0 auto;
+}
+
+div{
+    padding-left: 10px;
+    padding-bottom: 10px;;
+}
+table{
+    display: inline;
+}
+.common-input{
+    width:20px;
+
+   
+}
+#table-marks{
+    align-content: right;
+}
+.button-common{
+    align-content: center;
+}
+.common-label{
+    width: 50px;
+    align-content: center;
+}
+label{
+    display: inline-block;
+    width: 200px;
+}
+
+
+h1{
+    text-align: center;
+    padding-top: 20px;
+}
+input{
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    border-style:inherit;
+ 
+
+}
