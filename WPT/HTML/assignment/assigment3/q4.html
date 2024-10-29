@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cart</title>
+        <style>
+            body{
+                background: black;
+            }
+            p{
+                color: white;
+            }
+            strong{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="" id="change">[On mouse over here bold words of the following paragraph will be highlighted]</a>
+        <p >
+            <strong>We</strong> have just started <strong>this</strong>this section for the users (<strong>beginner</strong> to intermediate) who <strong>want</strong> to work with <strong>various</strong> JavaScript <strong>problems</strong> and write scripts online to <strong>test</strong> their JavaScript <strong>skill</strong>.
+        </p>
+
+        <script>
+            var elm = document.getElementById("change");
+            var strongelm = document.getElementsByTagName("strong");
+           
+            elm.onmouseover = function (){
+                for(let i=0;i<strongelm.length;i++){
+                    
+                    strongelm[i].style.color="green";
+                }
+            }
+            
+            elm.onmouseleave =function (){
+                for(let i=0;i<strongelm.length;i++){
+                    
+                    strongelm[i].style.color="black";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cart</title>
+    </head>
+    <body>
+        <select id="removeItem" >
+            <option value="1" >EyeCream</option>
+            <option value="2" >Moistrizer</option>
+            <option value="3" >Sunscreen</option>
+            <option value="4" >LipBam</option>
+            <option value="5" >Serum</option>
+            <option value="6" >Hairgrowthserum</option>
+        </select>
+
+        <button id="itemResomeBtn">Item Remove</button>
+
+        <script>
+            var id1 = document.getElementById("itemResomeBtn");
+            id1.onclick = function (){
+               var rem = document.getElementById("removeItem");
+               rem.remove(rem.selectedIndex);
+                
+            }
+        </script>
+
+    </body>
+</html>

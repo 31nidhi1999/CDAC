@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form</title>
+        <link rel="stylesheet" type="text/css" href="style2.css">
+    </head>
+
+    <body>
+        <form onsubmit="return myFun()">
+            <input type="text" placeholder="First Name" class="input">
+            <input type="text" placeholder="Last Name" class="input">
+            <input type="number" placeholder="Contact Number" class="input">
+            <input type="email" placeholder="EMAIL ID" class="input">
+            <button type="submit">Submit</button>
+        </form>
+
+        <div>
+            <p id="display"></p>
+        </div>
+
+        <script>
+            function myFun(){
+                var inputTag = document.getElementsByClassName("input");
+                for(let i=0; i<inputTag.length; i++){
+                    let newElement = document.createElement("h2");
+                    var displayElm = document.getElementById("display");
+                    displayElm.appendChild(newElement);
+                    newElement.innerHTML = inputTag[i].value;
+                }
+               return false;
+            }
+        </script>
+    </body>
+</html>
