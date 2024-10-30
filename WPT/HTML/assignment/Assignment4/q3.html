@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q2</title>
+    </head>
+
+    <body>
+
+        <script>
+            //main function
+            function responseURL(url){
+                console.log("response");
+            }
+
+            //call backfun
+            const fetchData=((url,callBackFun)=>{
+                console.log(url);
+                setTimeout(()=>{
+                    
+                    callBackFun(url);
+                },8000);
+            });
+
+            fetchData("https://www.google.co.in/",responseURL);
+        </script>
+    </body>
+</html>

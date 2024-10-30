@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q4</title>
+    </head>
+
+    <body>
+        <script>
+            //main function
+            function responseURL(url){
+                console.log(url);
+               return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        if(url){
+                            resolve("response");
+                        }else{
+                            reject("ERROR : In correct URL");
+                        }
+                    },2000);
+               });
+            }
+
+            //call backfun
+            console.log("using then & catch");
+            responseURL("https://www.google.co.in/")
+            .then((res)=>{
+                console.log("Inside then1 "+res);
+            })
+            .catch((error)=>{
+                console.log("Inside catch1 "+error);
+            });
+
+             responseURL("")
+            .then((res)=>{
+                console.log("Inside then2 "+res);
+            })
+            .catch((error)=>{
+                console.log("Inside catch2 "+error);
+            });
+
+            
+            async function handelPromise(){
+                try{
+                    console.log("Using ASYNC & AWAKE");
+                    var l1 = await responseURL("https://www.google.co.in/");
+                    console.log("Inside AYSNC1 :"+l1);
+                    var l2 = await responseURL("");
+                    console.log("Inside AYSNC1 :"+l2);
+                }catch(error){
+                    console.log(error);
+                }
+            }
+
+            handelPromise();
+        </script>
+    </body>
+</html>
