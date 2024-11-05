@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q2</title>
+    </head>
+
+    <body>
+        <input type="number"  id="length" placeholder="enter length of rectangle">
+        <input type="number"  id="breath" placeholder="eneter breath of rectangle">
+        <button id="btnregulararea">submit</button>
+        <h3>Area of rectangle using regular function</h3>
+        <div id="regular"></div>
+
+        <h3>Area of rectangle using callBackFun function</h3>
+        <div id="cb"></div>
+        
+        <script>
+
+            function areaCalReg(l,b){
+                    return l * b;
+             }
+            btnregulararea.onclick= (l,b)=>{
+                let len = document.getElementById("length").value;
+                let breath = document.getElementById("breath").value;
+                let areaRec= areaCalReg(len,breath);
+                let cbArea = document.getElementById("cb");
+                
+                cbArea.innerHTML = "Area of rectangle using callback :"+ `${areaRec}` + " sq m";
+            }
+
+            
+             let area = areaCalReg(10,9);
+             console.log(area);
+             let areaRec = document.getElementById("regular");
+                
+             areaRec.innerHTML = "Area of rectangle using regular(fiexed length & breath) :"+ `${area}` + " sq m";
+
+        </script>
+        
+    </body>
+</html>

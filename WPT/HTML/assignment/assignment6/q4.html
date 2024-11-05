@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q4</title>
+    </head>
+
+    <body>
+        <div id="display"></div>
+        <script>
+            var cars=[
+                        {
+                            "city_mpg": 18,
+                            "class1": "midsize car",
+                            "combination_mpg": 21,
+                            "cylinders": 4,
+                            "displacement": 2.2,
+                            "drive": "fwd",
+                            "fuel_type": "gas",
+                            "highway_mpg": 26,
+                            "make": "toyota",
+                            "model": "camry",
+                            "transmission": "a",
+                            "year": 1993
+                        } ,
+                        {
+                            "city_mpg": 19,
+                            "class1": "midsize car",
+                            "combination_mpg": 22,
+                            "cylinders": 4,
+                            "displacement": 2.2,
+                            "drive": "fwd",
+                            "fuel_type": "gas",
+                            "highway_mpg": 27,
+                            "make": "toyota",
+                            "model": "camry",
+                            "transmission": "m",
+                            "year": 1993
+                        } 
+                    ];
+
+
+    
+        var displayVal = document.getElementById("display");
+    
+        let destCars = {city_mpg,class1,combination_mpg,cylinders,displacement,drive,fuel_type,highway_mpg,make,model,transmission,year}=cars;
+        displayVal.innerHTML = destCars.map(ds=>`
+                <div>
+                    <p>city_mp : ${ds.city_mpg}</p>
+                     <p>combination_mpg : ${ds.combination_mpg}</p>
+                     <p>make :${ds.make}</p>
+                      <p>Model :${ds.model}</p>
+                      <hr>
+                </div>
+        `).join(' ');
+        
+     </script>
+    </body>
+</html>    
